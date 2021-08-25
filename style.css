@@ -1,5 +1,13 @@
+*{
+    box-sizing: border-box;
+}
 body{
     background: linear-gradient(to right, hsl(200,100%,50%),hsl(175,100%,50%));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
 }
 .clock{
     height: 300px;
@@ -9,6 +17,20 @@ body{
     border: 2px solid black;
     position: relative;
 }
+.clock::after{
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 50%;
+    background-color: black;
+    z-index: 2;
+
+
+}
 .clock .number{
     --rotation:0;
     position: absolute;
@@ -17,6 +39,7 @@ body{
     /* background-color: red; */
     text-align: center;
     transform: rotate(var(--rotation));
+    font-size: 1.5rem;
 }
 .clock .number1{--rotation:30deg}
 .clock .number2{--rotation:60deg}
@@ -31,11 +54,30 @@ body{
 .clock .number11{--rotation:330deg}
 
 .clock .hand{
-    width: 10px;
-    height: 40%;
-    background-color: black;
+    --rotation:0;
     position: absolute;
     left: 50%;
     bottom: 50%;
-    transform: translateX(-50%);
+    border-radius: 10px 10px 0 0;
+    transform-origin: bottom;
+    border: 1px solid rgb(255, 255, 255);
+    transform: translateX(-50%) rotate(calc(var(--rotation)*1deg));
+    z-index: 1;
+    
+}
+.clock .second{
+    width: 3px;
+    height: 45%;
+    background-color: red;
+    /* background-color: black; */
+}
+.clock .minute{
+    width: 7px;
+    height: 40%;
+    background-color: black;
+}
+.clock .hour{
+    width: 10px;
+    height: 35%;
+    background-color: black;
 }
